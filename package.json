@@ -1,9 +1,10 @@
 {
-  "name": "devC-Project",
+  "name": "devcproject",
   "version": "1.0.0",
   "description": "DevC-project",
   "main": "index.js",
   "scripts": {
+    "startDev": "nodemon --require @babel/register --require @babel/register ./src/server.js",
     "test": "mocha --timeout 5000 --require @babel/register --require @babel/polyfill --exit ./src/test/*.test.js"
   },
   "repository": {
