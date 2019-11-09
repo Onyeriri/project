@@ -1,8 +1,9 @@
+import '@babel/polyfill';
 import express from 'express';
 import bodyparser from 'body-parser';
 
 import ErrorHandler from './Utils/feedbackHandler';
-import Routes from './routes/employeeRoute';
+import EmployeeRoute from './routes/employeeRoute';
 
 
 const app = express();
@@ -10,7 +11,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
     extended: false
 }));
-app.use('/api/v1', Routes);
+app.use('/api/v1', EmployeeRoute);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
