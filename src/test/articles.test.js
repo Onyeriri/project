@@ -1,7 +1,6 @@
 import mocha from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import path from 'path';
 
 import server from '../server';
 const url = '/api/v1/'

@@ -20,6 +20,17 @@ class GifModel {
 
     }
 
+    static async getGif(id) {
+        const value = [id];
+        const response = await Database.query('SELECT * FROM gifs WHERE gifid = $1', value).catch((error) => {
+            throw new ErrorHandler(error.message, 400);
+        })
+        if (!response) {
+            throw new ErrorHandler('Gif does not exist', 404);
+        }
+        return response;
+    }
+
 }
 
 export default GifModel;
