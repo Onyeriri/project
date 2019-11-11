@@ -10,6 +10,16 @@ class GifModel {
         return response;
     }
 
+    static async deleteGif(id, authorId) {
+        const values = [id, authorId];
+        await Database.query('DELETE FROM gifs WHERE gifid = $1 AND authorid = $2', values).catch(
+            (error) => {
+                throw new Error(error.message);
+            }
+        )
+
+    }
+
 }
 
 export default GifModel;

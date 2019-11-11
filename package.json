@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "startDev": "nodemon --require @babel/register --require @babel/register ./src/server.js",
-    "test": "mocha --timeout 15000 --require @babel/register --require @babel/polyfill --exit ./src/test/articles.test.js"
+    "test": "mocha --timeout 20000 --require @babel/register --require @babel/polyfill --exit ./src/test/gif.test.js"
   },
   "repository": {
     "type": "git",

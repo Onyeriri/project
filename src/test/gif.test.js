@@ -8,6 +8,7 @@ import server from '../server';
 const url = '/api/v1/'
 chai.use(chaiHttp);
 const employee = {}
+const gif = {};
 
 mocha.describe('EMPLOYEE CREATE GIF POST', () => {
     mocha.before('Create a new employee', (done) => {
@@ -42,8 +43,24 @@ mocha.describe('EMPLOYEE CREATE GIF POST', () => {
                     chai.expect(data).to.have.property('imageurl');
                     chai.expect(data).to.have.property('gifid');
                     chai.expect(data.message).to.eql('GIF image successfully posted');
+                    gif.id = data.gifid;
                     done()
                 }).catch(error => done(error))
+        })
+    })
+
+    mocha.describe('Employee can delete a gif post', () => {
+        it('DELETE /api/v1/gifs/gifId', (done) => {
+            chai.request(server)
+                .delete(`${url}/gifs/${gif.id}`)
+                .auth(employee.token, {
+                    type: 'bearer'
+                })
+                .then(response => {
+                    const data = response.body.data;
+                    chai.expect(data.message).to.eql('gif post successfully deleted')
+                    done();
+                }).catch(error => done(error));
         })
     })
 })
