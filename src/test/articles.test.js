@@ -7,6 +7,7 @@ import server from '../server';
 const url = '/api/v1/'
 chai.use(chaiHttp);
 const employee = {}
+const article = {};
 
 mocha.describe('EMPLOYEE CREATE GIF POST', () => {
     mocha.before('Create a new employee', (done) => {
@@ -42,6 +43,29 @@ mocha.describe('EMPLOYEE CREATE GIF POST', () => {
                     chai.expect(data).to.have.property('title');
                     chai.expect(data).to.have.property('articleid');
                     chai.expect(data.message).to.eql('Article successfully posted');
+                    article.id = data.articleid;
+                    done()
+                }).catch(error => done(error))
+        })
+    })
+
+    mocha.describe('Employee can edit an article', () => {
+        it('PATCH /api/v1/articles/:articleId', (done) => {
+            chai.request(server)
+                .patch(`${url}/articles/${article.id}`)
+                .auth(employee.token, {
+                    type: 'bearer'
+                })
+                .send({
+                    title: 'I have edited this title',
+                    'article': 'I have edited this article'
+                })
+                .then(response => {
+                    chai.expect(response.body).to.have.property('data');
+                    const data = response.body.data;
+                    chai.expect(data).to.have.property('title');
+                    chai.expect(data).to.have.property('article');
+                    chai.expect(data.message).to.eql('Article successfully updated');
                     done()
                 }).catch(error => done(error))
         })

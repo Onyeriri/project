@@ -22,6 +22,25 @@ class ArticleController {
             next(error);
         }
     }
+
+    static async editArticle(req, res, next) {
+        try {
+            await ArticleModel.getArticle(req.params.id);
+            const article = await ArticleModel.EditArticle(req.body, req.params.id, req.auth.userId);
+            const message = 'Article successfully updated';
+            const data = {
+                ...article,
+                message
+            }
+            res.status(200).json({
+                status: 'success',
+                data
+            })
+        } catch (error) {
+            next(error)
+        }
+
+    }
 }
 
 export default ArticleController;
