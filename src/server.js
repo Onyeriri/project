@@ -6,6 +6,7 @@ import ErrorHandler from './Utils/feedbackHandler';
 import EmployeeRoute from './routes/employeeRoute';
 import GifRoute from './routes/gifRoute';
 import ArticleRoute from './routes/articleRoute';
+import CommentRoute from './routes/commentRoute';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyparser.urlencoded({
 app.use('/api/v1', EmployeeRoute);
 app.use('/api/v1', GifRoute)
 app.use('/api/v1', ArticleRoute)
+app.use('/api/v1', CommentRoute)
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
