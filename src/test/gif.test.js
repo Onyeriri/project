@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 const employee = {}
 const gif = {};
 
-mocha.describe('EMPLOYEE CREATE GIF POST', () => {
+mocha.describe('EMPLOYEE GIF POSTS', () => {
     mocha.before('Create a new employee', (done) => {
         chai.request(server).post(`${url}/auth/create-user`).send({
                 email: 'viktor@gmail.com',

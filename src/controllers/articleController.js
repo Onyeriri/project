@@ -57,6 +57,19 @@ class ArticleController {
             next(error);
         }
     }
+
+    static async getArticles(req, res, next) {
+        try {
+            const articles = await ArticleModel.getAllArticles()
+            const data = [...articles];
+            res.status(200).json({
+                status: 'success',
+                data
+            })
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default ArticleController;

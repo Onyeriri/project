@@ -43,6 +43,15 @@ class CreateArticle {
         })
     }
 
+    static async getAllArticles() {
+        const response = await Database.query('SELECT * FROM articles ORDER BY articleid DESC', '', true).catch(
+            (error) => {
+                throw new Error(error.message);
+            }
+        )
+        return response;
+    }
+
 }
 
 export default CreateArticle;

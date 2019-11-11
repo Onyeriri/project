@@ -11,7 +11,7 @@ const employee = {}
 const article = {};
 const gif = {};
 
-mocha.describe('EMPLOYEE CREATE GIF POST', () => {
+mocha.describe('EMPLOYEE COMMENT TESTS', () => {
     mocha.before('Create a new employee', (done) => {
         chai
             .request(server)

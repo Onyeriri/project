@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 const employee = {}
 const article = {};
 
-mocha.describe('EMPLOYEE CREATE GIF POST', () => {
+mocha.describe('EMPLOYEE ARTICLE TESTS', () => {
     mocha.before('Create a new employee', (done) => {
         chai.request(server).post(`${url}/auth/create-user`).send({
                 email: 'viktorArticle@gmail.com',
@@ -66,6 +66,23 @@ mocha.describe('EMPLOYEE CREATE GIF POST', () => {
                     chai.expect(data).to.have.property('article');
                     chai.expect(data.message).to.eql('Article successfully updated');
                     done()
+                }).catch(error => done(error))
+        })
+    })
+
+    mocha.describe('Employee can view all articles', () => {
+        it('GET /articles/feed', (done) => {
+            chai.request(server)
+                .get(`${url}/articles/feed`)
+                .auth(employee.token, {
+                    type: 'bearer'
+                })
+                .then(response => {
+                    const {
+                        data
+                    } = response.body;
+                    chai.expect(data).to.be.an('array');
+                    done();
                 }).catch(error => done(error))
         })
     })
