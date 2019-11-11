@@ -8,5 +8,6 @@ const route = Router()
 
 route.post('/articles', JWT.authenticate, ArticleController.createArticle);
 route.patch('/articles/:id', JWT.authenticate, ArticleController.editArticle)
+route.delete('/articles/:id', JWT.authenticate, ArticleController.deleteArticle)
 
 export default route;

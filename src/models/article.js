@@ -36,6 +36,13 @@ class CreateArticle {
         return response;
     }
 
+    static async DeleteArticle(id, authorId) {
+        const values = [id, authorId];
+        await Database.query('DELETE FROM articles WHERE articleid = $1 AND authorid = $2', values).catch(error => {
+            throw new Error(error.message)
+        })
+    }
+
 }
 
 export default CreateArticle;

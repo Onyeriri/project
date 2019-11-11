@@ -70,4 +70,22 @@ mocha.describe('EMPLOYEE CREATE GIF POST', () => {
                 }).catch(error => done(error))
         })
     })
+
+    mocha.describe('Employee delete article', () => {
+        it('DELETE /api/v1/articles/articleid', (done) => {
+            chai.request(server)
+                .delete(`${url}/articles/${article.id}`)
+                .auth(employee.token, {
+                    type: 'bearer'
+                })
+                .then(response => {
+                    const {
+                        data
+                    } = response.body;
+                    console.log('response data', data)
+                    chai.expect(data.message).to.eql('Article successfully deleted')
+                    done()
+                }).catch(error => done(error));
+        })
+    })
 })
