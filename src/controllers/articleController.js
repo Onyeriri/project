@@ -41,6 +41,22 @@ class ArticleController {
         }
 
     }
+
+    static async deleteArticle(req, res, next) {
+        try {
+            await ArticleModel.getArticle(req.params.id);
+            await ArticleModel.DeleteArticle(req.params.id, req.auth.userId);
+            const data = {
+                message: 'Article successfully deleted'
+            };
+            res.status(200).json({
+                status: 'success',
+                data
+            })
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default ArticleController;
