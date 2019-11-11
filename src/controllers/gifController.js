@@ -23,6 +23,22 @@ class GifController {
             next(error);
         }
     }
+
+    static async deleteGif(req, res, next) {
+        try {
+            await GifModel.deleteGif(req.params.id, req.auth.userId);
+            const data = {
+                message: 'gif post successfully deleted',
+            }
+            res.status(200).json({
+                status: 'success',
+                data
+            })
+        } catch (error) {
+            next(error)
+        }
+
+    }
 }
 
 export default GifController;

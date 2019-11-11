@@ -13,5 +13,6 @@ const upload = Multer({
 const route = Router()
 
 route.post('/gifs', JWT.authenticate, upload, Cloudinary.upload, GifController.createGif);
+route.delete('/gifs/:id', JWT.authenticate, GifController.deleteGif);
 
 export default route;
