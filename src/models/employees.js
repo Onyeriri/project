@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import Database from '../DB';
+import Database from '../DB/index'; // Line of code added
 import ErrorHandler from '../ErrorHandler/errorhandler';
 
 class EmployeeModel {
