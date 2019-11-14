@@ -41,12 +41,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE');
   next();
 });
-app.get('/', function (res, req, next) {
-  res.json({
-    message: 'Teamwork server started on heroku'
-  });
-  next();
-});
 app.use(_feedbackHandler["default"].error);
 app.set('port', _helper["default"].PORT);
 app.listen(_helper["default"].PORT, function () {

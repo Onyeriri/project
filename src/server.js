@@ -17,6 +17,7 @@ app.use(
     extended: false,
   }),
 );
+
 app.use('/api/v1', EmployeeRoute);
 app.use('/api/v1', GifRoute);
 app.use('/api/v1', ArticleRoute);
@@ -29,13 +30,6 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Methods',
     'GET, POST, PATCH, PUT, DELETE',
   );
-  next();
-});
-
-app.get('/', (res, req, next) => {
-  res.json({
-    message: 'Teamwork server started on heroku',
-  });
   next();
 });
 
