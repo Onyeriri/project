@@ -29,6 +29,17 @@ class CommentModel {
         return response;
     }
 
+    static async getGifComments(gifid) {
+        const value = [gifid];
+        const response = await Database.query('SELECT * FROM comments_gifs WHERE gifid = $1', value, true).catch(error => {
+            throw new Error(error.message)
+        });
+        if (!response) {
+            throw new ErrorHandler('comments not found', 404);
+        }
+        return response;
+    }
+
 }
 
 
