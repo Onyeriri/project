@@ -18,6 +18,17 @@ class CommentModel {
         return response;
     }
 
+    static async getArticleComments(articleid) {
+        const value = [articleid];
+        const response = await Database.query('SELECT * FROM comments_articles WHERE articleid = $1', value, true).catch(error => {
+            throw new Error(error.message)
+        });
+        if (!response) {
+            throw new ErrorHandler('comments not found', 404);
+        }
+        return response;
+    }
+
 }
 
 

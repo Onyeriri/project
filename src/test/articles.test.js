@@ -71,9 +71,9 @@ mocha.describe('EMPLOYEE ARTICLE TESTS', () => {
     })
 
     mocha.describe('Employee can view all articles', () => {
-        it('GET /articles/feed', (done) => {
+        it('GET /feed', (done) => {
             chai.request(server)
-                .get(`${url}/articles/feed`)
+                .get(`${url}/feed`)
                 .auth(employee.token, {
                     type: 'bearer'
                 })
@@ -84,6 +84,23 @@ mocha.describe('EMPLOYEE ARTICLE TESTS', () => {
                     chai.expect(data).to.be.an('array');
                     done();
                 }).catch(error => done(error))
+        })
+    })
+    mocha.describe('Employee can view a specific article', () => {
+        it('GET /api/v1/articles/articleId', (done) => {
+            chai.request(server)
+                .get(`${url}/articles/${article.id}`)
+                .auth(employee.token, {
+                    type: 'bearer'
+                })
+                .then((response) => {
+                    const {
+                        data
+                    } = response.body;
+                    chai.expect(data).to.have.property('comments');
+                    chai.expect(data.comments).to.be.an('array');
+                    done()
+                }).catch(error => done(error));
         })
     })
 

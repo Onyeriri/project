@@ -52,6 +52,19 @@ class CreateArticle {
         return response;
     }
 
+    static async getSpecificArticle(id) {
+        const value = [id];
+        const response = await Database.query('SELECT * FROM articles WHERE articleid = $1', value).catch(
+            (error) => {
+                throw new Error(error.message);
+            }
+        )
+        if (!response) {
+            throw new ErrorHandler('Article not found', 404)
+        };
+        return response;
+    }
+
 }
 
 export default CreateArticle;
