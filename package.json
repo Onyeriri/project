@@ -7,7 +7,7 @@
     "startDev": "nodemon --require @babel/register --require @babel/register ./src/server.js",
     "pretest": "node --require @babel/register --require @babel/polyfill ./src/test/testDatabase.js",
     "test": "nyc mocha --timeout 20000 --require @babel/register --require @babel/polyfill --exit ./src/test/*.test.js",
-    "test_coverage": "nyc --reporter=text/icov coveralls",
+    "test_coverage": "nyc npm test && nyc --reporter=lcov | coveralls",
     "production": "babel ./src --out-dir ./prod",
     "start": "set NODE_ENV=production&&node ./prod/server.js"
   },
