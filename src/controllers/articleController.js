@@ -1,4 +1,5 @@
-import ArticleModel from '../models/article'
+import ArticleModel from '../models/article';
+import CommentModel from '../models/comment';
 import ErrorHandler from '../ErrorHandler/errorhandler';
 
 
@@ -68,6 +69,24 @@ class ArticleController {
             })
         } catch (error) {
             next(error);
+        }
+    }
+
+    static async getSpecificArticle(req, res, next) {
+        try {
+            const article = await ArticleModel.getSpecificArticle(req.params.id);
+            const comment = await CommentModel.getArticleComments(article.articleid);
+            const comments = [...comment];
+            const data = {
+                ...article,
+                comments
+            };
+            res.status(200).json({
+                status: 'success',
+                data
+            })
+        } catch (error) {
+            next(error)
         }
     }
 }
