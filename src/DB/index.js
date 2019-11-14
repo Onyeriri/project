@@ -1,21 +1,8 @@
 import { Pool } from 'pg';
-import 'dotenv/config';
-
-let DB = null;
-switch (process.env.NODE_ENV) {
-  case 'production':
-    DB = process.env.DATABASE_URL;
-    break;
-  case 'development':
-    DB = process.env.DB_CONFIG;
-    break;
-  default:
-    DB = process.env.DB_CONFIG;
-    break;
-}
+import helper from '../Utils/helper';
 
 const pool = new Pool({
-  connectionString: DB,
+  connectionString: helper.DB,
 });
 
 class Database {

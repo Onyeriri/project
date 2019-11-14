@@ -7,6 +7,7 @@ import EmployeeRoute from './routes/employeeRoute';
 import GifRoute from './routes/gifRoute';
 import ArticleRoute from './routes/articleRoute';
 import CommentRoute from './routes/commentRoute';
+import helper from './Utils/helper';
 
 const app = express();
 app.use(bodyparser.json());
@@ -30,10 +31,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (res, req, next) => {
+  res.json({
+    message: 'Teamwork server started on heroku',
+  });
+  next();
+});
+
 app.use(ErrorHandler.error);
-const port = process.env.PORT || 3000;
-app.set('port', port);
-app.listen(port, () => {
+app.set('port', helper.PORT);
+app.listen(helper.PORT, () => {
   console.log('app is running on port 3000');
 });
 
