@@ -1,0 +1,15 @@
+language: node_js
+node_js: stable
+services:
+  - postgresql
+install: npm
+cache: npm
+test: npm test
+notifications:
+  email:
+    on_success: always # default: change
+    on_failure: always # default: always
+before_script:
+  - psql -c 'create database test_database;' -U postgres
+after_script:
+  - npm run test_coverage

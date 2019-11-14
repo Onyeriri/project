@@ -1,6 +1,6 @@
-import GifModel from "../models/gif";
-import ErrorHandler from "../ErrorHandler/errorhandler";
-import CommentModel from "../models/comment";
+import GifModel from '../models/gif';
+import ErrorHandler from '../ErrorHandler/errorhandler';
+import CommentModel from '../models/comment';
 
 class GifController {
   static async createGif(req, res, next) {
@@ -8,24 +8,25 @@ class GifController {
       const gif = await GifModel.createGif(
         req.body.title,
         req.url,
-        req.auth.userId
+        req.auth.userId,
       );
       if (!gif) {
-        throw new ErrorHandler("something bad happened", 400);
+        throw new ErrorHandler('something bad happened', 400);
       }
-      const message = "GIF image successfully posted";
+      const message = 'GIF image successfully posted';
       const data = {
         ...gif,
-        message
+        message,
       };
       res.status(201).json({
-        status: "success",
-        data
+        status: 'success',
+        data,
       });
     } catch (error) {
       next(error);
     }
   }
+
   static async getSpecificGif(req, res, next) {
     try {
       const gif = await GifModel.getGif(req.params.id);
@@ -33,11 +34,11 @@ class GifController {
       const comments = [...comment];
       const data = {
         ...gif,
-        comments
+        comments,
       };
       res.status(200).json({
-        status: "success",
-        data
+        status: 'success',
+        data,
       });
     } catch (error) {
       next(error);
@@ -48,11 +49,11 @@ class GifController {
     try {
       await GifModel.deleteGif(req.params.id, req.auth.userId);
       const data = {
-        message: "gif post successfully deleted"
+        message: 'gif post successfully deleted',
       };
       res.status(200).json({
-        status: "success",
-        data
+        status: 'success',
+        data,
       });
     } catch (error) {
       next(error);
