@@ -2,7 +2,8 @@ language: node_js
 node_js: stable
 services:
   - postgresql
-install: npm
+install:
+  - npm install
 cache: npm
 test: npm test
 notifications:
