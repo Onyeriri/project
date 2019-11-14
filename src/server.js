@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import '@babel/polyfill';
 import express from 'express';
 import bodyparser from 'body-parser';
@@ -30,8 +31,9 @@ app.use((req, res, next) => {
 });
 
 app.use(ErrorHandler.error);
-
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+app.set('port', port);
+app.listen(port, () => {
   console.log('app is running on port 3000');
 });
 
