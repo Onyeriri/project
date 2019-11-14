@@ -7,7 +7,9 @@ exports["default"] = void 0;
 
 var _pg = require("pg");
 
-require("dotenv/config");
+var _helper = _interopRequireDefault(require("../Utils/helper"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -20,7 +22,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var pool = new _pg.Pool({
-  connectionString: process.env.DB_CONFIG
+  connectionString: _helper["default"].DB
 });
 
 var Database =

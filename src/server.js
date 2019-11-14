@@ -10,6 +10,7 @@ import CommentRoute from './routes/commentRoute';
 import helper from './Utils/helper';
 
 const app = express();
+
 app.use(bodyparser.json());
 app.use(
   bodyparser.urlencoded({
@@ -41,7 +42,7 @@ app.get('/', (res, req, next) => {
 app.use(ErrorHandler.error);
 app.set('port', helper.PORT);
 app.listen(helper.PORT, () => {
-  console.log('app is running on port 3000');
+  console.log('app is running on port ', helper.PORT);
 });
 
 export default app;
