@@ -6,7 +6,9 @@
   "scripts": {
     "startDev": "nodemon --require @babel/register --require @babel/register ./src/server.js",
     "test": "mocha --timeout 20000 --require @babel/register --require @babel/polyfill --exit ./src/test/gif.test.js",
-    "test_coverage": "nyc --reporter=text/icov coveralls"
+    "test_coverage": "nyc --reporter=text/icov coveralls",
+    "production": "babel ./src --out-dir ./prod",
+    "start": "set NODE_ENV=production&&node ./prod/server.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "pg": "^7.12.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.0",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/register": "^7.7.0",
